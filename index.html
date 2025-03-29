@@ -3,98 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>University Results</title>
+    <title>University GPA Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
-            background-color: #f4f4f4;
             text-align: center;
+            background-color: #f4f4f4;
         }
+
+        .container {
+            width: 60%;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
         table {
             width: 100%;
-            max-width: 600px;
-            margin: auto;
-            background: white;
+            margin: 20px 0;
             border-collapse: collapse;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: white;
         }
+
         th, td {
-            padding: 10px;
             border: 1px solid #ddd;
-            text-align: center;
+            padding: 10px;
         }
-        th {
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
             background: #007BFF;
             color: white;
+            cursor: pointer;
+            border-radius: 5px;
         }
-        input {
-            width: 60px;
-            padding: 5px;
-            text-align: center;
-            border: 1px solid #ccc;
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        h3 {
+            margin-top: 20px;
+            color: #333;
         }
     </style>
 </head>
 <body>
-    <h2>University Grade Calculator</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Subject</th>
-                <th>Coef</th>
-                <th>TD (40%)</th>
-                <th>Exam (60%)</th>
-                <th>Final Grade</th>
-            </tr>
-        </thead>
-        <tbody id="gradeTable">
-            <tr><td>Listening & Speaking</td><td>2</td><td><input type="number" class="td-score" min="0" max="20" value="0"></td><td><input type="number" class="exam-score" min="0" max="20" value="0"></td><td class="final-grade">0</td></tr>
-            <tr><td>Written Expression</td><td>2</td><td><input type="number" class="td-score" min="0" max="20" value="0"></td><td><input type="number" class="exam-score" min="0" max="20" value="0"></td><td class="final-grade">0</td></tr>
-            <tr><td>Grammar</td><td>2</td><td><input type="number" class="td-score" min="0" max="20" value="0"></td><td><input type="number" class="exam-score" min="0" max="20" value="0"></td><td class="final-grade">0</td></tr>
-            <tr><td>Linguistics & Phonetics</td><td>2</td><td><input type="number" class="td-score" min="0" max="20" value="0"></td><td><input type="number" class="exam-score" min="0" max="20" value="0"></td><td class="final-grade">0</td></tr>
-            <tr><td>Study Skills</td><td>2</td><td><input type="number" class="td-score" min="0" max="20" value="0"></td><td><input type="number" class="exam-score" min="0" max="20" value="0"></td><td class="final-grade">0</td></tr>
-            <tr><td>Civilization</td><td>2</td><td><input type="number" class="td-score" min="0" max="20" value="0"></td><td><input type="number" class="exam-score" min="0" max="20" value="0"></td><td class="final-grade">0</td></tr>
-            <tr><td>Literature</td><td>1</td><td><input type="number" class="td-score" min="0" max="20" value="0"></td><td><input type="number" class="exam-score" min="0" max="20" value="0"></td><td class="final-grade">0</td></tr>
-            <tr><td>ICT & E-Learning</td><td>1</td><td><input type="number" class="td-score" min="0" max="20" value="0"></td><td><input type="number" class="exam-score" min="0" max="20" value="0" disabled></td><td class="final-grade">0</td></tr>
-            <tr><td>Reading</td><td>1</td><td><input type="number" class="td-score" min="0" max="20" value="0"></td><td><input type="number" class="exam-score" min="0" max="20" value="0" disabled></td><td class="final-grade">0</td></tr>
-            <tr><td>Foreign Language</td><td>1</td><td><input type="number" class="td-score" min="0" max="20" value="0"></td><td><input type="number" class="exam-score" min="0" max="20" value="0" disabled></td><td class="final-grade">0</td></tr>
-        </tbody>
-    </table>
-    <h3>Semester Average: <span id="semesterAverage">0</span></h3>
+    <div class="container">
+        <h2>University GPA Calculator</h2>
+        <table id="gradesTable">
+            <thead>
+                <tr>
+                    <th>Module</th>
+                    <th>Coef</th>
+                    <th>TD</th>
+                    <th>Exam</th>
+                    <th>Module Avg</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Listening & Speaking</td>
+                    <td>2</td>
+                    <td><input type="number" min="0" max="20" class="td"></td>
+                    <td><input type="number" min="0" max="20" class="exam"></td>
+                    <td class="moduleAvg">-</td>
+                </tr>
+                <tr>
+                    <td>Written Expression</td>
+                    <td>2</td>
+                    <td><input type="number" min="0" max="20" class="td"></td>
+                    <td><input type="number" min="0" max="20" class="exam"></td>
+                    <td class="moduleAvg">-</td>
+                </tr>
+                <tr>
+                    <td>Grammar</td>
+                    <td>2</td>
+                    <td><input type="number" min="0" max="20" class="td"></td>
+                    <td><input type="number" min="0" max="20" class="exam"></td>
+                    <td class="moduleAvg">-</td>
+                </tr>
+                <tr>
+                    <td>Linguistics & Phonetics</td>
+                    <td>2</td>
+                    <td><input type="number" min="0" max="20" class="td"></td>
+                    <td><input type="number" min="0" max="20" class="exam"></td>
+                    <td class="moduleAvg">-</td>
+                </tr>
+                <tr>
+                    <td>Study Skills</td>
+                    <td>2</td>
+                    <td><input type="number" min="0" max="20" class="td"></td>
+                    <td><input type="number" min="0" max="20" class="exam"></td>
+                    <td class="moduleAvg">-</td>
+                </tr>
+                <tr>
+                    <td>Civilization</td>
+                    <td>2</td>
+                    <td><input type="number" min="0" max="20" class="td"></td>
+                    <td><input type="number" min="0" max="20" class="exam"></td>
+                    <td class="moduleAvg">-</td>
+                </tr>
+                <tr>
+                    <td>Literature</td>
+                    <td>1</td>
+                    <td><input type="number" min="0" max="20" class="td"></td>
+                    <td><input type="number" min="0" max="20" class="exam"></td>
+                    <td class="moduleAvg">-</td>
+                </tr>
+                <tr>
+                    <td>Reading</td>
+                    <td>2</td>
+                    <td><input type="number" min="0" max="20" class="td"></td>
+                    <td>-</td>
+                    <td class="moduleAvg">-</td>
+                </tr>
+                <tr>
+                    <td>ICT</td>
+                    <td>1</td>
+                    <td><input type="number" min="0" max="20" class="td"></td>
+                    <td>-</td>
+                    <td class="moduleAvg">-</td>
+                </tr>
+                <tr>
+                    <td>Foreign Language</td>
+                    <td>1</td>
+                    <td><input type="number" min="0" max="20" class="td"></td>
+                    <td>-</td>
+                    <td class="moduleAvg">-</td>
+                </tr>
+            </tbody>
+        </table>
+        <button onclick="calculateAverage()">Calculate GPA</button>
+        <h3>Final GPA: <span id="result">-</span></h3>
+    </div>
+
     <script>
-        function calculateGrade(row) {
-            let tdInput = row.querySelector('.td-score');
-            let examInput = row.querySelector('.exam-score');
-            let finalGradeCell = row.querySelector('.final-grade');
-            let coef = parseFloat(row.children[1].textContent);
-            
-            let tdScore = parseFloat(tdInput.value) || 0;
-            let examScore = parseFloat(examInput.value) || 0;
-            
-            let finalGrade = examInput.disabled ? tdScore : (tdScore * 0.4 + examScore * 0.6).toFixed(2);
-            finalGradeCell.textContent = finalGrade;
-            return { grade: parseFloat(finalGrade), coef };
-        }
+        function calculateAverage() {
+            let rows = document.querySelectorAll("#gradesTable tbody tr");
+            let totalWeightedScore = 0;
+            let totalCoef = 0;
 
-        function calculateSemesterAverage() {
-            let rows = document.querySelectorAll('#gradeTable tr');
-            let totalWeightedGrades = 0;
-            let totalCoef = 16;
-            
             rows.forEach(row => {
-                let { grade, coef } = calculateGrade(row);
-                totalWeightedGrades += grade * coef;
-            });
-            
-            let semesterAverage = (totalWeightedGrades / totalCoef).toFixed(2);
-            document.getElementById('semesterAverage').textContent = semesterAverage;
-        }
+                let coef = parseFloat(row.cells[1].textContent);
+                let td = parseFloat(row.cells[2].querySelector("input").value) || 0;
+                let examInput = row.cells[3].querySelector("input");
+                let exam = examInput ? (parseFloat(examInput.value) || 0) : null;
+                let moduleAvgCell = row.cells[4];
 
-        document.querySelectorAll('.td-score, .exam-score').forEach(input => {
-            input.addEventListener('input', calculateSemesterAverage);
-        });
+                let subjectAvg;
+                if (exam !== null) {
+                    subjectAvg = (td * 0.4) + (exam * 0.6);
+                } else {
+                    subjectAvg = td;
+                }
+
+                moduleAvgCell.textContent = subjectAvg.toFixed(2);
+
+                totalWeightedScore += subjectAvg * coef;
+                totalCoef += coef;
+            });
+
+            let finalAverage = totalWeightedScore / totalCoef;
+            document.getElementById("result").textContent = finalAverage.toFixed(2);
+        }
     </script>
 </body>
 </html>
